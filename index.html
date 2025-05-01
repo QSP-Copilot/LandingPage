@@ -3,238 +3,825 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QSP-Copilot | Your AI Assistant for Quality Software Projects</title>
+    <title>QSP-Copilot 2.0: Futuristic Presentation</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&family=Inter:wght@300;400;600&display=swap');
+        
         :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4cc9f0;
-            --light: #f8f9fa;
-            --dark: #212529;
+            --primary: #3a01df;
+            --primary-dark: #2b00a3;
+            --secondary: #00e5ff;
+            --accent: #ff00e5;
+            --dark: #050023;
+            --light: #f0f8ff;
+            --text: #e0e6ff;
+            --success: #00cc88;
+            --warning: #ffaa00;
+            --future: #bb77ff;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: var(--light);
-            color: var(--dark);
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background-color: var(--dark);
             line-height: 1.6;
+            background-image: radial-gradient(circle at 80% 20%, rgba(58, 1, 223, 0.08) 0%, transparent 60%);
+            background-attachment: fixed;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            padding: 4rem 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        
+        .title-slide {
+            text-align: center;
+            background-image: linear-gradient(to bottom, rgba(5, 0, 35, 0.9), rgba(5, 0, 35, 0.8));
+        }
+        
+        .cyber-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to right, rgba(0, 229, 255, 0.04) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 229, 255, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            transform: perspective(1000px) rotateX(60deg) scale(1.5);
+            transform-origin: center bottom;
+            opacity: 0.2;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            line-height: 1.2;
+            color: white;
+            position: relative;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: var(--gradient);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            font-weight: 600;
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gradient);
+        }
+        
+        .title-slide h2 {
+            color: var(--text);
+            font-weight: 400;
+            font-size: 2rem;
+        }
+        
+        .title-slide h2::after {
+            display: none;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            line-height: 1.8;
         }
         
         .container {
-            max-width: 1140px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 2rem;
         }
         
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 1rem 0;
-        }
-        
-        .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .hero {
-            padding: 5rem 0;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-        
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            color: #6c757d;
-        }
-        
-        .signup-form {
-            max-width: 500px;
-            margin: 0 auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .form-control {
+        .flex-container {
             display: flex;
-            margin-bottom: 1rem;
+            justify-content: space-between;
+            gap: 4rem;
+            margin: 3rem 0;
+            align-items: center;
         }
         
-        .form-control input {
+        .text-column {
             flex: 1;
-            padding: 0.75rem;
-            border: 1px solid #ced4da;
-            border-radius: 4px 0 0 4px;
+        }
+        
+        .image-column {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .feature-image {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(58, 1, 223, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 0 10px rgba(58, 1, 223, 0.2);
+        }
+        
+        ul {
+            list-style-type: none;
+            margin-left: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        li:before {
+            content: "›";
+            color: var(--secondary);
+            position: absolute;
+            left: 0;
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+        }
+        
+        th, td {
+            text-align: left;
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        th {
+            background: var(--primary-dark);
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+        
+        .highlight {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .business-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .business-header {
+            border-bottom: 1px solid var(--secondary);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border-radius: 2rem;
+            background: var(--primary-dark);
+            color: white;
             font-size: 1rem;
+            margin-right: 1rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
         }
         
         .btn {
-            background-color: var(--primary);
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--primary);
             color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-            font-size: 1rem;
+            text-decoration: none;
+            border-radius: 5px;
             font-weight: 600;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
         }
         
         .btn:hover {
-            background-color: var(--secondary);
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
-        .features {
-            padding: 4rem 0;
-            background-color: white;
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--secondary), transparent);
+            opacity: 0.3;
+            animation: scan 8s linear infinite;
+            z-index: -1;
         }
         
-        .features-grid {
+        @keyframes scan {
+            0% {
+                top: 0;
+            }
+            100% {
+                top: 100%;
+            }
+        }
+        
+        .hud-element {
+            position: absolute;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+        
+        .top-right {
+            top: 20px;
+            right: 20px;
+        }
+        
+        .top-left {
+            top: 20px;
+            left: 20px;
+        }
+        
+        .cyber-circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 1px solid var(--secondary);
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: pulse 6s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.1;
+            }
+            100% {
+                transform: scale(1.05);
+                opacity: 0.2;
+            }
+        }
+        
+        .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
-            margin-top: 3rem;
+            margin: 2rem 0;
         }
         
-        .feature-card {
+        .section-title {
             text-align: center;
-            padding: 1.5rem;
+            margin-bottom: 3rem;
         }
         
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        .feature-card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-        }
-        
-        .coming-soon {
+        .section-title h2 {
             display: inline-block;
-            background-color: var(--accent);
-            color: var(--dark);
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
         }
         
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 2rem 0;
+        .section-title h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+        }
+        
+        .chart-container {
+            height: 250px;
+            width: 100%;
+            margin: 2rem 0;
+            position: relative;
+            background: var(--glass-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 1rem;
+        }
+        
+        .chart-bar {
+            position: absolute;
+            bottom: 20px;
+            width: 15%;
+            background: linear-gradient(to top, var(--primary), var(--secondary));
+            border-radius: 5px 5px 0 0;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+            animation: grow 2s ease-out forwards;
+        }
+        
+        .chart-bar:nth-child(1) {
+            left: 10%;
+            height: 30%;
+        }
+        
+        .chart-bar:nth-child(2) {
+            left: 30%;
+            height: 45%;
+            animation-delay: 0.2s;
+        }
+        
+        .chart-bar:nth-child(3) {
+            left: 50%;
+            height: 60%;
+            animation-delay: 0.4s;
+        }
+        
+        .chart-bar:nth-child(4) {
+            left: 70%;
+            height: 80%;
+            animation-delay: 0.6s;
+        }
+        
+        @keyframes grow {
+            from {
+                height: 0;
+                opacity: 0.4;
+            }
+            to {
+                opacity: 0.8;
+            }
+        }
+        
+        .chart-label {
+            position: absolute;
+            bottom: 0;
             text-align: center;
+            width: 15%;
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+        
+        .chart-label:nth-child(5) {
+            left: 10%;
+        }
+        
+        .chart-label:nth-child(6) {
+            left: 30%;
+        }
+        
+        .chart-label:nth-child(7) {
+            left: 50%;
+        }
+        
+        .chart-label:nth-child(8) {
+            left: 70%;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100%) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        .particle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
         }
         
         @media (max-width: 768px) {
-            .hero h1 {
+            .flex-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
                 font-size: 2rem;
             }
             
-            .hero p {
-                font-size: 1rem;
+            .slide {
+                padding: 3rem 5%;
             }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
+        }
+        
+        /* Roadmap specific styles */
+        .feature-item {
+            padding: 0.5rem 0 0.5rem 2rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+        
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            left: 0;
+            top: 0.85rem;
+        }
+        
+        .complete::before {
+            background-color: var(--success);
+            box-shadow: 0 0 8px var(--success);
+        }
+        
+        .in-progress::before {
+            background-color: var(--warning);
+            box-shadow: 0 0 8px var(--warning);
+        }
+        
+        .planned::before {
+            background-color: var(--future);
+            box-shadow: 0 0 8px var(--future);
+        }
+        
+        .key {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .key-item {
+            display: flex;
+            align-items: center;
+            margin-right: 1.5rem;
+        }
+        
+        .key-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .dot-complete {
+            background-color: var(--success);
+            box-shadow: 0 0 8px var(--success);
+        }
+        
+        .dot-progress {
+            background-color: var(--warning);
+            box-shadow: 0 0 8px var(--warning);
+        }
+        
+        .dot-planned {
+            background-color: var(--future);
+            box-shadow: 0 0 8px var(--future);
         }
     </style>
 </head>
 <body>
-    <header>
+    <!-- Title Slide -->
+    <section class="slide title-slide">
+        <div class="cyber-grid"></div>
+        <div class="scan-line"></div>
+        <div class="hud-element top-right">QSP-Engine™ v2.0</div>
+        <div class="hud-element top-left">Biotech Revolution</div>
+        <div class="particle-container"></div>
+        
         <div class="container">
-            <div class="logo">QSP-Copilot</div>
-        </div>
-    </header>
-    
-    <section class="hero">
-        <div class="container">
-            <span class="coming-soon">Coming Soon</span>
-            <h1>Revolutionize Your Software Quality Process</h1>
-            <p>QSP-Copilot is an AI assistant that helps you deliver high-quality software faster. Get real-time code analysis, testing recommendations, and quality assurance insights.</p>
+            <h1>QSP-Copilot 2.0</h1>
+            <h2>Reimagining Drug Development for the AI Era</h2>
             
-            <div class="signup-form">
-                <h2>Be the first to know when we launch</h2>
-                <p>Join our waitlist for early access and exclusive updates.</p>
-                <form id="email-form" name="waitlist" method="POST" netlify netlify-honeypot="bot-field">
-                    <input type="hidden" name="form-name" value="waitlist" />
-                    <p class="hidden" style="display: none;">
-                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-                    </p>
-                    <div class="form-control">
-                        <input type="email" name="email" placeholder="Enter your email address" required id="email-input">
-                        <button type="submit" class="btn">Join Waitlist</button>
+            <div style="margin: 4rem auto; position: relative; max-width: 700px;">
+                <img src="https://placehold.co/800x400/252550/00e5ff?text=AI+Drug+Development" alt="AI-powered drug development workflow" style="width: 100%; border-radius: 10px; box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);">
+                
+                <div class="cyber-circle" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+                <div class="cyber-circle" style="top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.7);"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- From Literature to Live Models -->
+    <section class="slide">
+        <div class="scan-line"></div>
+        <div class="particle-container"></div>
+        
+        <div class="container">
+            <h2>From Literature to Live Models in Minutes</h2>
+            
+            <div class="flex-container">
+                <div class="text-column">
+                    <p>The world's first AI-powered platform that transforms scientific literature into interactive disease models, revolutionizing how pharmaceutical research teams develop drugs and understand disease mechanisms.</p>
+                    
+                    <div class="card">
+                        <h3>Automated Knowledge Extraction</h3>
+                        <ul>
+                            <li>Real-time parsing of scientific publications</li>
+                            <li>Biological mechanism identification</li>
+                            <li>Automatic parameter estimation</li>
+                        </ul>
                     </div>
-                    <p id="form-message" style="display: none; margin-top: 10px; font-size: 0.9rem;"></p>
-                </form>
+                </div>
+                
+                <div class="image-column">
+                    <img src="https://placehold.co/500x400/252550/00e5ff?text=Literature+to+Models" alt="Literature to model transformation" class="feature-image">
+                </div>
             </div>
         </div>
     </section>
     
-    <section class="features">
+    <!-- Evolution of Drug Development -->
+    <section class="slide">
+        <div class="scan-line"></div>
+        <div class="cyber-grid"></div>
+        
         <div class="container">
-            <h2 style="text-align: center;">What QSP-Copilot Can Do For You</h2>
+            <div class="section-title">
+                <h2>Evolution of Drug Development</h2>
+            </div>
             
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🔍</div>
-                    <h3>Intelligent Code Analysis</h3>
-                    <p>Get real-time feedback on code quality, potential bugs, and performance issues.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Yesterday</th>
+                        <th>Today</th>
+                        <th>Tomorrow with QSP-Copilot</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Manual literature review</td>
+                        <td>Semi-automated extraction</td>
+                        <td><span class="highlight">Real-time knowledge integration</span></td>
+                    </tr>
+                    <tr>
+                        <td>Siloed modeling efforts</td>
+                        <td>Basic collaborative tools</td>
+                        <td><span class="highlight">Collective intelligence ecosystem</span></td>
+                    </tr>
+                    <tr>
+                        <td>Static visualizations</td>
+                        <td>Interactive graphs</td>
+                        <td><span class="highlight">Digital twins of disease pathways</span></td>
+                    </tr>
+                    <tr>
+                        <td>Months to model development</td>
+                        <td>Weeks to insights</td>
+                        <td><span class="highlight">Minutes to actionable intelligence</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <span class="badge">100x Acceleration</span>
+                <span class="badge">10x Accuracy</span>
+                <span class="badge">5x Cost Reduction</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Core Features -->
+    <section class="slide">
+        <div class="scan-line"></div>
+        <div class="particle-container"></div>
+        
+        <div class="container">
+            <div class="section-title">
+                <h2>Core Features</h2>
+            </div>
+            
+            <div class="grid-container">
+                <div class="card">
+                    <h3>AI-Powered Knowledge Engine</h3>
+                    <ul>
+                        <li>Continuously learns from scientific literature</li>
+                        <li>Identifies relationships missed by humans</li>
+                        <li>Updates models as new evidence emerges</li>
+                    </ul>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">🧪</div>
-                    <h3>Test Case Generation</h3>
-                    <p>Automatically generate comprehensive test cases for your code with high coverage.</p>
+                <div class="card">
+                    <h3>Conversational Modeling</h3>
+                    <ul>
+                        <li>Natural language commands for complex models</li>
+                        <li>Automatic model improvement suggestions</li>
+                        <li>Plain language explanations of model behavior</li>
+                    </ul>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">📈</div>
-                    <h3>Quality Metrics</h3>
-                    <p>Track and improve software quality with actionable insights and recommendations.</p>
+                <div class="card">
+                    <h3>Digital Disease Twins</h3>
+                    <ul>
+                        <li>Multi-scale visualization from molecular to patient</li>
+                        <li>Time-evolving system dynamics</li>
+                        <li>Self-optimizing parameters with real data</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Clinical Intelligence</h3>
+                    <ul>
+                        <li>Virtual patient cohort generation</li>
+                        <li>Trial outcome simulation before enrollment</li>
+                        <li>One-click regulatory documentation</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
     
-    <footer>
+    <!-- Roadmap Section -->
+    <!-- This section will be dynamically loaded from roadmap.html -->
+    <section class="slide" id="roadmap-section">
+        <div class="scan-line"></div>
+        <div class="particle-container"></div>
+        
         <div class="container">
-            <p>&copy; 2025 QSP-Copilot. All rights reserved.</p>
+            <div class="section-title">
+                <h2>Loading Roadmap...</h2>
+            </div>
+            <p style="text-align: center;">Please wait while we load the roadmap content...</p>
         </div>
-    </footer>
-
-    <script>
-        // Track form submission success
-        // This detects when user is returned to page after successful submission
-        if (window.location.search.includes('success=true')) {
-            const messageEl = document.getElementById('form-message');
-            messageEl.style.display = 'block';
-            messageEl.style.color = '#28a745';
-            messageEl.textContent = 'Thanks for joining our waitlist! We\'ll be in touch soon.';
-        }
-    </script>
+    </section>
+    
+    <!-- Business Plan Overview -->
+    <section class="slide">
+        <div class="scan-line"></div>
+        <div class="cyber-grid"></div>
+        
+        <div class="container">
+            <div class="section-title">
+                <h2>Business Overview</h2>
+            </div>
+            
+            <div class="business-card">
+                <div class="business-header">
+                    <h3>Executive Summary</h3>
+                </div>
+                <p>QSP-Copilot revolutionizes drug development by leveraging AI to transform scientific literature into computational models. Our platform reduces development timelines by 70% while improving insight quality, providing pharmaceutical companies with unparalleled competitive advantage in target discovery and clinical development.</p>
+            </div>
+            
+            <div class="flex-container">
+                <div class="text-column">
+                    <div class="business-card">
+                        <div class="business-header">
+                            <h3>Market Opportunity</h3>
+                        </div>
+                        <ul>
+                            <li>Global QSP/modeling software market: $1.2B with 22% CAGR</li>
+                            <li>Pharmaceutical R&D technology spend: $14B annually</li>
+                            <li>Top 20 pharma companies spend $180B+ on R&D</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="text-column">
+                    <div class="business-card">
+                        <div class="business-header">
+                            <h3>Revenue Projections</h3>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <div class="chart-bar"></div>
+                            <div class="chart-bar"></div>
+                            <div class="chart-bar"></div>
+                            <div class="chart-bar"></div>
+                            
+                            <div class="chart-label">Year 1<br>$2M</div>
+                            <div class="chart-label">Year 2<br>$8M</div>
+                            <div class="chart-label">Year 3<br>$25M</div>
+                            <div class="chart-label">Year 5<br>$75M</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience the Future Today -->
+    <section class="slide title-slide">
+        <div class="cyber-grid"></div>
+        <div class="scan-line"></div>
+        <div class="particle-container"></div>
+        
+        <div class="container" style="text-align: center;">
+            <div class="section-title">
+                <h2>Experience the Future Today</h2>
+            </div>
+            
+            <p style="margin: 0 auto 2rem; max-width: 600px;">Schedule a personalized demo to see your disease area modeled in real-time</p>
+            
+            <a href="#" class="btn" style="margin-bottom: 3rem;">Request Demo Access</a>
+            
+            <p>Contact: <span style="color: var(--secondary);">future@qsp-copilot.ai</span></p>
+            
+            <div style="position: relative; margin-top: 4rem;">
+                <div class="cyber-circle" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+                
+                <h3 style="margin-bottom: 1rem;">QSP-Copilot 2.0</h3>
+                <p style="margin: 0 auto;">Where AI meets biology to redefine what's possible</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Add Integration Script -->
+    <script src="integration.js"></script>
 </body>
 </html>
