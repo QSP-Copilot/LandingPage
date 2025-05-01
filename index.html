@@ -15,7 +15,6 @@
             --dark: #050023;
             --light: #f8f9fa;
             --text: #212529;
-            --text-light: #6c757d;
             --success: #00cc88;
             --warning: #ffaa00;
             --future: #bb77ff;
@@ -47,11 +46,16 @@
             justify-content: center;
             position: relative;
             border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            background-color: var(--light) !important;
+            background-image: none !important;
         }
         
         .title-slide {
             text-align: center;
-            background-image: linear-gradient(to bottom, rgba(248, 249, 250, 0.95), rgba(248, 249, 250, 0.9));
+            /* background-image: linear-gradient(to bottom, rgba(248, 249, 250, 0.95), rgba(248, 249, 250, 0.9)); */
+            /* background-image: linear-gradient(to bottom, rgba(5, 0, 35, 0.9), rgba(5, 0, 35, 0.8)); */
+            background-color: var(--light) !important;
+            background-image: none !important;
         }
         
         .cyber-grid {
@@ -493,7 +497,7 @@
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: left;
+            text-align: center;
         }
         
         .form-control {
@@ -612,10 +616,10 @@
         }
     
 /* Ensure all slides have a light background */
-.slide, .title-slide {
+/* .slide, .title-slide {
     background-color: var(--light) !important;
     background-image: none !important;
-}
+} */
 
 /* Center footer content */
 footer {
