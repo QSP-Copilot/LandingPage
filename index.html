@@ -610,7 +610,24 @@
             background-color: var(--future);
             box-shadow: 0 0 8px var(--future);
         }
-    </style>
+    
+/* Ensure all slides have a light background */
+.slide, .title-slide {
+    background-color: var(--light) !important;
+    background-image: none !important;
+}
+
+/* Center footer content */
+footer {
+    text-align: center;
+    padding: 2rem 0;
+}
+footer div {
+    margin: 0 auto;
+    display: inline-block;
+}
+
+</style>
 </head>
 <body>    
     <!-- Title Slide -->
@@ -642,12 +659,12 @@
                 </form>
             </div>
             
-            <div style="margin: 4rem auto; position: relative; max-width: 700px;">
+            <!-- <div style="margin: 4rem auto; position: relative; max-width: 700px;">
                 <img src="https://placehold.co/800x400/e9ecef/3a01df?text=AI+Drug+Development" alt="AI-powered drug development workflow" style="width: 100%; border-radius: 10px; box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);">
                 
                 <div class="cyber-circle" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
                 <div class="cyber-circle" style="top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.7);"></div>
-            </div>
+            </div> -->
         </div>
     </section>
     
@@ -674,7 +691,7 @@
                 </div>
                 
                 <div class="image-column">
-                    <img src="https://placehold.co/500x400/e9ecef/3a01df?text=Literature+to+Models" alt="Literature to model transformation" class="feature-image">
+                    <img src="diagram_and_references_screenshot.png" alt="Literature to model transformation" class="feature-image">
                 </div>
             </div>
         </div>
@@ -794,60 +811,6 @@
         </div>
     </section>
     
-    <!-- Business Plan Overview -->
-    <section class="slide">
-        <div class="scan-line"></div>
-        <div class="cyber-grid"></div>
-        
-        <div class="container">
-            <div class="section-title">
-                <h2>Business Overview</h2>
-            </div>
-            
-            <div class="business-card">
-                <div class="business-header">
-                    <h3>Executive Summary</h3>
-                </div>
-                <p>QSP-Copilot revolutionizes drug development by leveraging AI to transform scientific literature into computational models. Our platform reduces development timelines by 70% while improving insight quality, providing pharmaceutical companies with unparalleled competitive advantage in target discovery and clinical development.</p>
-            </div>
-            
-            <div class="flex-container">
-                <div class="text-column">
-                    <div class="business-card">
-                        <div class="business-header">
-                            <h3>Market Opportunity</h3>
-                        </div>
-                        <ul>
-                            <li>Global QSP/modeling software market: $1.2B with 22% CAGR</li>
-                            <li>Pharmaceutical R&D technology spend: $14B annually</li>
-                            <li>Top 20 pharma companies spend $180B+ on R&D</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="text-column">
-                    <div class="business-card">
-                        <div class="business-header">
-                            <h3>Revenue Projections</h3>
-                        </div>
-                        
-                        <div class="chart-container">
-                            <div class="chart-bar"></div>
-                            <div class="chart-bar"></div>
-                            <div class="chart-bar"></div>
-                            <div class="chart-bar"></div>
-                            
-                            <div class="chart-label">Year 1<br>$2M</div>
-                            <div class="chart-label">Year 2<br>$8M</div>
-                            <div class="chart-label">Year 3<br>$25M</div>
-                            <div class="chart-label">Year 5<br>$75M</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
     <!-- Experience the Future Today -->
     <section class="slide title-slide">
         <div class="cyber-grid"></div>
@@ -881,7 +844,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 QSP-Copilot | Powered by AI | All rights reserved.</p>
+            <p>&copy; 2025 QSP-Copilot | Powered by AI | All rights reserved</p>
         </div>
     </footer>
 
