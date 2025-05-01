@@ -6,21 +6,22 @@
     <title>QSP-Copilot 2.0: Futuristic Presentation</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&family=Inter:wght@300;400;600&display=swap');
-
+        
         :root {
-            --primary: #4361ee;
+            --primary: #3a01df;
             --primary-dark: #2b00a3;
-            --secondary: #3f37c9;
-            --accent: #4cc9f0;
+            --secondary: #00e5ff;
+            --accent: #ff00e5;
+            --dark: #050023;
             --light: #f8f9fa;
-            --dark: #212529;
+            --text: #212529;
+            --text-light: #6c757d;
             --success: #00cc88;
             --warning: #ffaa00;
             --future: #bb77ff;
-            --text: #e0e6ff;
             --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
-            --glass-bg: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(0, 0, 0, 0.1);
         }
         
         * {
@@ -32,9 +33,9 @@
         body {
             font-family: 'Inter', sans-serif;
             color: var(--text);
-            background-color: var(--dark);
+            background-color: var(--light);
             line-height: 1.6;
-            background-image: radial-gradient(circle at 80% 20%, rgba(58, 1, 223, 0.08) 0%, transparent 60%);
+            background-image: radial-gradient(circle at 80% 20%, rgba(58, 1, 223, 0.05) 0%, transparent 60%);
             background-attachment: fixed;
         }
         
@@ -45,12 +46,12 @@
             flex-direction: column;
             justify-content: center;
             position: relative;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
         
         .title-slide {
             text-align: center;
-            background-image: linear-gradient(to bottom, rgba(5, 0, 35, 0.9), rgba(5, 0, 35, 0.8));
+            background-image: linear-gradient(to bottom, rgba(248, 249, 250, 0.95), rgba(248, 249, 250, 0.9));
         }
         
         .cyber-grid {
@@ -59,8 +60,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: linear-gradient(to right, rgba(0, 229, 255, 0.04) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(0, 229, 255, 0.04) 1px, transparent 1px);
+            background-image: linear-gradient(to right, rgba(0, 0, 150, 0.04) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 0, 150, 0.04) 1px, transparent 1px);
             background-size: 50px 50px;
             z-index: -1;
             transform: perspective(1000px) rotateX(60deg) scale(1.5);
@@ -77,7 +78,7 @@
         h1 {
             font-size: 4rem;
             line-height: 1.2;
-            color: white;
+            color: var(--primary);
             position: relative;
             font-weight: 700;
             text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
@@ -95,7 +96,7 @@
         
         h2 {
             font-size: 2.5rem;
-            color: var(--secondary);
+            color: var(--primary);
             font-weight: 600;
             position: relative;
             margin-bottom: 2.5rem;
@@ -123,7 +124,7 @@
         
         h3 {
             font-size: 1.8rem;
-            color: var(--secondary);
+            color: var(--primary);
             margin-bottom: 1.5rem;
         }
         
@@ -230,11 +231,11 @@
         }
         
         tr:hover {
-            background-color: rgba(255, 255, 255, 0.03);
+            background-color: rgba(0, 0, 0, 0.03);
         }
         
         .highlight {
-            color: var(--secondary);
+            color: var(--primary);
             font-weight: 600;
         }
         
@@ -312,7 +313,7 @@
             position: absolute;
             font-family: 'Orbitron', sans-serif;
             font-size: 0.7rem;
-            color: var(--secondary);
+            color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 1px;
             opacity: 0.7;
@@ -332,7 +333,7 @@
             position: absolute;
             width: 200px;
             height: 200px;
-            border: 1px solid var(--secondary);
+            border: 1px solid var(--primary);
             border-radius: 50%;
             opacity: 0.15;
             animation: pulse 6s infinite alternate;
@@ -484,6 +485,41 @@
             z-index: -1;
         }
         
+        /* Form styles from qsp_landing_page */
+        .signup-form {
+            max-width: 500px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        
+        .form-control {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        
+        .form-control input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+        
+        .coming-soon {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
         @media (max-width: 768px) {
             .flex-container {
                 flex-direction: column;
@@ -577,8 +613,15 @@
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <header style="background-color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 1rem 0; position: fixed; width: 100%; z-index: 1000;">
+        <div class="container">
+            <div style="font-weight: 700; font-size: 1.5rem; color: var(--primary);">QSP-Copilot</div>
+        </div>
+    </header>
+    
     <!-- Title Slide -->
-    <section class="slide title-slide">
+    <section class="slide title-slide" style="padding-top: 6rem;">
         <div class="cyber-grid"></div>
         <div class="scan-line"></div>
         <div class="hud-element top-right">QSP-Engine™ v2.0</div>
@@ -586,11 +629,28 @@
         <div class="particle-container"></div>
         
         <div class="container">
+            <span class="coming-soon">Coming Soon</span>
             <h1>QSP-Copilot 2.0</h1>
             <h2>Reimagining Drug Development for the AI Era</h2>
             
+            <div class="signup-form">
+                <h3>Be the first to know when we launch</h3>
+                <p>Join our waitlist for early access and exclusive updates.</p>
+                <form id="email-form" name="waitlist" method="POST" netlify netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="waitlist" />
+                    <p class="hidden" style="display: none;">
+                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
+                    <div class="form-control">
+                        <input type="email" name="email" placeholder="Enter your email address" required id="email-input">
+                        <button type="submit" class="btn">Join Waitlist</button>
+                    </div>
+                    <p id="form-message" style="display: none; margin-top: 10px; font-size: 0.9rem;"></p>
+                </form>
+            </div>
+            
             <div style="margin: 4rem auto; position: relative; max-width: 700px;">
-                <img src="https://placehold.co/800x400/252550/00e5ff?text=AI+Drug+Development" alt="AI-powered drug development workflow" style="width: 100%; border-radius: 10px; box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);">
+                <img src="https://placehold.co/800x400/e9ecef/3a01df?text=AI+Drug+Development" alt="AI-powered drug development workflow" style="width: 100%; border-radius: 10px; box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);">
                 
                 <div class="cyber-circle" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
                 <div class="cyber-circle" style="top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.7);"></div>
@@ -621,7 +681,7 @@
                 </div>
                 
                 <div class="image-column">
-                    <img src="https://placehold.co/500x400/252550/00e5ff?text=Literature+to+Models" alt="Literature to model transformation" class="feature-image">
+                    <img src="https://placehold.co/500x400/e9ecef/3a01df?text=Literature+to+Models" alt="Literature to model transformation" class="feature-image">
                 </div>
             </div>
         </div>
@@ -794,6 +854,54 @@
             </div>
         </div>
     </section>
+    
+    <!-- Experience the Future Today -->
+    <section class="slide title-slide">
+        <div class="cyber-grid"></div>
+        <div class="scan-line"></div>
+        <div class="particle-container"></div>
+        
+        <div class="container" style="text-align: center;">
+            <div class="section-title">
+                <h2>Experience the Future Today</h2>
+            </div>
+            
+            <p style="margin: 0 auto 2rem; max-width: 600px;">Schedule a personalized demo to see your disease area modeled in real-time</p>
+            
+            <div class="signup-form">
+                <h3>Join Our Waitlist</h3>
+                <p>Be the first to experience QSP-Copilot 2.0 when we launch</p>
+                <form id="email-form-footer" name="waitlist-footer" method="POST" netlify netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="waitlist-footer" />
+                    <p class="hidden" style="display: none;">
+                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
+                    <div class="form-control">
+                        <input type="email" name="email" placeholder="Enter your email address" required id="email-input">
+                        <button type="submit" class="btn">Join Waitlist</button>
+                    </div>
+                    <p id="form-message" style="display: none; margin-top: 10px; font-size: 0.9rem;"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 QSP-Copilot. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Track form submission success
+        // This detects when user is returned to page after successful submission
+        if (window.location.search.includes('success=true')) {
+            const messageEl = document.getElementById('form-message');
+            messageEl.style.display = 'block';
+            messageEl.style.color = '#28a745';
+            messageEl.textContent = 'Thanks for joining our waitlist! We\'ll be in touch soon.';
+        }
+    </script>
     
     <!-- Experience the Future Today -->
     <section class="slide title-slide">
