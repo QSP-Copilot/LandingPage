@@ -632,6 +632,97 @@ footer div {
     display: inline-block;
 }
 
+        
+/* Roadmap styling compatibility fixes */
+.roadmap-container {
+    margin: 2rem 0;
+}
+
+/* Fix for feature item markers */
+.feature-item {
+    padding: 0.5rem 0 0.5rem 2rem;
+    position: relative;
+    margin-bottom: 0.8rem;
+}
+
+.feature-item::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    left: 0;
+    top: 0.85rem;
+}
+
+.complete::before {
+    background-color: var(--success);
+    box-shadow: 0 0 8px var(--success);
+}
+
+.in-progress::before {
+    background-color: var(--warning);
+    box-shadow: 0 0 8px var(--warning);
+}
+
+.planned::before {
+    background-color: var(--future);
+    box-shadow: 0 0 8px var(--future);
+}
+
+/* Status indicator key styling */
+.key {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.key-item {
+    display: flex;
+    align-items: center;
+    margin-right: 1.5rem;
+}
+
+.key-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.dot-complete {
+    background-color: var(--success);
+    box-shadow: 0 0 8px var(--success);
+}
+
+.dot-progress {
+    background-color: var(--warning);
+    box-shadow: 0 0 8px var(--warning);
+}
+
+.dot-planned {
+    background-color: var(--future);
+    box-shadow: 0 0 8px var(--future);
+}
+
+/* Business card header styling */
+.business-header {
+    border-bottom: 1px solid var(--secondary);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.business-header h3 {
+    margin: 0;
+}
+
+
 </style>
 </head>
 <body>    
