@@ -721,9 +721,7 @@ footer div {
 .business-header h3 {
     margin: 0;
 }
-
-/* Two-Step Form Styling for QSP-Copilot */
-/* Main form container - maintains consistency with your existing styles */
+        /* Main form container - maintains consistency with your existing styles */
 .signup-form {
     max-width: 700px;
     margin: 2rem auto;
@@ -864,86 +862,32 @@ footer div {
     min-height: 80px;
 }
 
-/* Checkbox and radio styling */
-.checkbox-group,
-.radio-group {
+/* Multi-select styling */
+.multi-select {
+    height: auto;
+    min-height: 120px;
+}
+
+/* Radio and checkbox groups */
+.radio-group,
+.checkbox-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 1rem;
     margin-top: 0.5rem;
 }
 
-/* Column layout for checkboxes */
-.column-layout {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 0.75rem;
-}
-
-.checkbox-label,
-.radio-label {
+.radio-label,
+.checkbox-label {
     display: flex;
     align-items: center;
     margin: 0;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
-.checkbox-label:hover,
-.radio-label:hover {
-    color: var(--primary, #3a01df);
-}
-
-.checkbox-label input[type="checkbox"],
-.radio-label input[type="radio"] {
+.radio-label input,
+.checkbox-label input {
     margin-right: 0.5rem;
-    position: relative;
-    width: 16px;
-    height: 16px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border: 1px solid var(--primary, #3a01df);
-    border-radius: 3px;
-    outline: none;
-    transition: all 0.2s ease;
-    cursor: pointer;
-}
-
-.radio-label input[type="radio"] {
-    border-radius: 50%;
-}
-
-.checkbox-label input[type="checkbox"]:checked,
-.radio-label input[type="radio"]:checked {
-    background-color: var(--primary, #3a01df);
-    border-color: var(--primary, #3a01df);
-}
-
-.checkbox-label input[type="checkbox"]:checked::before,
-.radio-label input[type="radio"]:checked::before {
-    content: '';
-    position: absolute;
-    display: block;
-}
-
-.checkbox-label input[type="checkbox"]:checked::before {
-    left: 5px;
-    top: 2px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
-
-.radio-label input[type="radio"]:checked::before {
-    left: 4px;
-    top: 4px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: white;
 }
 
 /* Small helper text */
@@ -1057,8 +1001,10 @@ footer div {
         gap: 1rem;
     }
     
-    .column-layout {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    .radio-group,
+    .checkbox-group {
+        flex-direction: column;
+        gap: 0.5rem;
     }
     
     .form-actions {
@@ -1070,6 +1016,8 @@ footer div {
         width: 100%;
     }
 }
+
+
 
 </style>
 </head>
@@ -1314,7 +1262,7 @@ footer div {
             <p class="hidden" style="display: none;">
                 <label>Don't fill this out if you're human: <input name="bot-field" /></label>
             </p>
-            
+                        
             <!-- Professional Context -->
             <div class="form-group">
                 <label for="usage-category">How will you use QSP-Copilot?</label>
@@ -1551,7 +1499,6 @@ footer div {
     <!-- Add Integration Script -->
     <script src="integration.js"></script>
         <!-- JavaScript to handle form transitions -->
-<!-- JavaScript to handle form transitions -->
 <script>
     // When the email form is submitted
     document.getElementById('email-form').addEventListener('submit', function(e) {
@@ -1565,7 +1512,7 @@ footer div {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams({
-                'form-name': 'waitlist',
+                'form-name': 'waitlist-email',
                 'email': email
             }).toString()
         })
