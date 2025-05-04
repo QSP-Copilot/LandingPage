@@ -721,7 +721,9 @@ footer div {
 .business-header h3 {
     margin: 0;
 }
-        /* Main form container - maintains consistency with your existing styles */
+
+/* Two-Step Form Styling for QSP-Copilot */
+/* Main form container - maintains consistency with your existing styles */
 .signup-form {
     max-width: 700px;
     margin: 2rem auto;
@@ -862,32 +864,86 @@ footer div {
     min-height: 80px;
 }
 
-/* Multi-select styling */
-.multi-select {
-    height: auto;
-    min-height: 120px;
-}
-
-/* Radio and checkbox groups */
-.radio-group,
-.checkbox-group {
+/* Checkbox and radio styling */
+.checkbox-group,
+.radio-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.75rem;
     margin-top: 0.5rem;
 }
 
-.radio-label,
-.checkbox-label {
+/* Column layout for checkboxes */
+.column-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.75rem;
+}
+
+.checkbox-label,
+.radio-label {
     display: flex;
     align-items: center;
     margin: 0;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.radio-label input,
-.checkbox-label input {
+.checkbox-label:hover,
+.radio-label:hover {
+    color: var(--primary, #3a01df);
+}
+
+.checkbox-label input[type="checkbox"],
+.radio-label input[type="radio"] {
     margin-right: 0.5rem;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid var(--primary, #3a01df);
+    border-radius: 3px;
+    outline: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.radio-label input[type="radio"] {
+    border-radius: 50%;
+}
+
+.checkbox-label input[type="checkbox"]:checked,
+.radio-label input[type="radio"]:checked {
+    background-color: var(--primary, #3a01df);
+    border-color: var(--primary, #3a01df);
+}
+
+.checkbox-label input[type="checkbox"]:checked::before,
+.radio-label input[type="radio"]:checked::before {
+    content: '';
+    position: absolute;
+    display: block;
+}
+
+.checkbox-label input[type="checkbox"]:checked::before {
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.radio-label input[type="radio"]:checked::before {
+    left: 4px;
+    top: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: white;
 }
 
 /* Small helper text */
@@ -1001,10 +1057,8 @@ footer div {
         gap: 1rem;
     }
     
-    .radio-group,
-    .checkbox-group {
-        flex-direction: column;
-        gap: 0.5rem;
+    .column-layout {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     }
     
     .form-actions {
@@ -1016,8 +1070,6 @@ footer div {
         width: 100%;
     }
 }
-
-
 
 </style>
 </head>
@@ -1263,17 +1315,6 @@ footer div {
                 <label>Don't fill this out if you're human: <input name="bot-field" /></label>
             </p>
             
-            <div class="form-row">
-                <div class="form-group half">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name-input" placeholder="Your name">
-                </div>
-                <div class="form-group half">
-                    <label for="organization">Organization</label>
-                    <input type="text" name="organization" id="org-input" placeholder="Company/Institution">
-                </div>
-            </div>
-            
             <!-- Professional Context -->
             <div class="form-group">
                 <label for="usage-category">How will you use QSP-Copilot?</label>
@@ -1365,45 +1406,102 @@ footer div {
             
             <!-- Disease Areas & Applications -->
             <div class="form-group">
-                <label for="therapeutic-areas">Therapeutic Areas of Interest (select all that apply)</label>
-                <select name="therapeutic-areas[]" id="therapeutic-areas" multiple class="multi-select">
-                    <option value="oncology">Oncology</option>
-                    <option value="immunology">Immunology</option>
-                    <option value="neuroscience">Neuroscience</option>
-                    <option value="cardiovascular">Cardiovascular</option>
-                    <option value="metabolic">Metabolic</option>
-                    <option value="infectious">Infectious Disease</option>
-                    <option value="rare">Rare Disease</option>
-                    <option value="other">Other</option>
-                </select>
-                <small>Hold Ctrl/Cmd to select multiple options</small>
+                <label>Therapeutic Areas of Interest (select all that apply)</label>
+                <div class="checkbox-group column-layout">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="therapeutic-areas[]" value="oncology">
+                        <span>Oncology</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="therapeutic-areas[]" value="immunology">
+                        <span>Immunology</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="therapeutic-areas[]" value="neuroscience">
+                        <span>Neuroscience</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="therapeutic-areas[]" value="cardiovascular">
+                        <span>Cardiovascular</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="therapeutic-areas[]" value="metabolic">
+                        <span>Metabolic</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="therapeutic-areas[]" value="infectious">
+                        <span>Infectious Disease</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="therapeutic-areas[]" value="rare">
+                        <span>Rare Disease</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="therapeutic-areas[]" value="other">
+                        <span>Other</span>
+                    </label>
+                </div>
             </div>
             
             <div class="form-group">
-                <label for="model-application">Model Application (select all that apply)</label>
-                <select name="model-application[]" id="model-application" multiple class="multi-select">
-                    <option value="target-discovery">Target Discovery</option>
-                    <option value="drug-discovery">Drug Discovery</option>
-                    <option value="early-development">Early Development</option>
-                    <option value="late-stage">Late-Stage Clinical</option>
-                    <option value="post-marketing">Post-Marketing</option>
-                </select>
-                <small>Hold Ctrl/Cmd to select multiple options</small>
+                <label>Model Application (select all that apply)</label>
+                <div class="checkbox-group column-layout">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="model-application[]" value="target-discovery">
+                        <span>Target Discovery</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="model-application[]" value="drug-discovery">
+                        <span>Drug Discovery</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="model-application[]" value="early-development">
+                        <span>Early Development</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="model-application[]" value="late-stage">
+                        <span>Late-Stage Clinical</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="model-application[]" value="post-marketing">
+                        <span>Post-Marketing</span>
+                    </label>
+                </div>
             </div>
             
             <!-- Specific Use Cases -->
             <div class="form-group">
-                <label for="primary-interest">Primary Interest in QSP-Copilot</label>
-                <select name="primary-interest" id="primary-interest">
-                    <option value="" disabled selected>Select primary interest</option>
-                    <option value="literature">Literature Extraction</option>
-                    <option value="knowledge">Knowledge Integration</option>
-                    <option value="model-building">Model Building</option>
-                    <option value="simulation">Simulation</option>
-                    <option value="visualization">Visualization</option>
-                    <option value="parameter">Parameter Estimation</option>
-                    <option value="other">Other</option>
-                </select>
+                <label>Primary Interest in QSP-Copilot (select all that apply)</label>
+                <div class="checkbox-group column-layout">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="primary-interest[]" value="literature">
+                        <span>Literature Extraction</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="primary-interest[]" value="knowledge">
+                        <span>Knowledge Integration</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="primary-interest[]" value="model-building">
+                        <span>Model Building</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="primary-interest[]" value="simulation">
+                        <span>Simulation</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="primary-interest[]" value="visualization">
+                        <span>Visualization</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="primary-interest[]" value="parameter">
+                        <span>Parameter Estimation</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="primary-interest[]" value="other">
+                        <span>Other</span>
+                    </label>
+                </div>
             </div>
             
             <div class="form-group">
@@ -1453,6 +1551,7 @@ footer div {
     <!-- Add Integration Script -->
     <script src="integration.js"></script>
         <!-- JavaScript to handle form transitions -->
+<!-- JavaScript to handle form transitions -->
 <script>
     // When the email form is submitted
     document.getElementById('email-form').addEventListener('submit', function(e) {
@@ -1466,7 +1565,7 @@ footer div {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams({
-                'form-name': 'waitlist-email',
+                'form-name': 'waitlist',
                 'email': email
             }).toString()
         })
