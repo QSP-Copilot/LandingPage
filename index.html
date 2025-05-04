@@ -1236,21 +1236,17 @@ footer div {
 <div class="signup-form">
     <h3>Join Our Waitlist</h3>
     <p>Be the first to experience QSP-Copilot when we launch</p>
-    
-    <!-- Step 1: Email Collection -->
-    <form id="email-form" name="waitlist-email" method="POST" netlify netlify-honeypot="bot-field" style="display: block;">
-        <input type="hidden" name="form-name" value="waitlist-email" />
-        <p class="hidden" style="display: none;">
-            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-        </p>
-        
-        <div class="form-control">
-            <input type="email" name="email" placeholder="Enter your email address" required id="email-input">
-            <button type="submit" class="btn">Join Waitlist</button>
-        </div>
-        <p class="form-note">You'll have the option to share more details after submitting</p>
-        <p id="email-form-message" style="display: none; margin-top: 10px; font-size: 0.9rem;"></p>
-    </form>
+                <form id="email-form" name="waitlist" method="POST" netlify netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="waitlist" />
+                    <p class="hidden" style="display: none;">
+                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
+                    <div class="form-control">
+                        <input type="email" name="email" placeholder="Enter your email address" required id="email-input">
+                        <button type="submit" class="btn">Join Waitlist</button>
+                    </div>
+                    <p id="form-message" style="display: none; margin-top: 10px; font-size: 0.9rem;"></p>
+                </form>
     
     <!-- Step 2: Detailed Information (Hidden initially) -->
     <div id="detailed-form-container" style="display: none;">
