@@ -111,9 +111,7 @@ function updateActiveDot(index) {
 
 /**
  * Loads the roadmap content from the separate HTML file
- */
-/**
- * Loads the roadmap content from the separate HTML file
+ * and adapts it to match the main site's styling
  */
 function loadRoadmapContent() {
     console.log('Loading roadmap content');
@@ -149,94 +147,285 @@ function loadRoadmapContent() {
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
                 
-                // Get the full content div
-                const originalContainer = doc.querySelector('.container');
+                // Create a wrapper with our slide structure
+                const container = document.createElement('div');
+                container.className = 'container';
                 
-                if (originalContainer) {
-                    // Create a wrapper with our slide structure
-                    const container = document.createElement('div');
-                    container.className = 'container';
+                // Create a section title that matches our main site theme
+                const sectionTitle = document.createElement('div');
+                sectionTitle.className = 'section-title';
+                const heading = document.createElement('h2');
+                heading.textContent = 'Current & Future Capabilities';
+                sectionTitle.appendChild(heading);
+                container.appendChild(sectionTitle);
+                
+                // Extract content instead of importing styles
+                // Current Capabilities
+                const currentCapabilities = document.createElement('div');
+                currentCapabilities.className = 'card';
+                
+                const originalCapabilities = doc.querySelector('.card');
+                if (originalCapabilities) {
+                    // Extract heading
+                    const capabilityTitle = document.createElement('h3');
+                    capabilityTitle.textContent = 'Current Capabilities';
+                    currentCapabilities.appendChild(capabilityTitle);
                     
-                    // Create a section title that matches our main site theme
-                    const sectionTitle = document.createElement('div');
-                    sectionTitle.className = 'section-title';
-                    const heading = document.createElement('h2');
-                    heading.textContent = 'Current & Future Capabilities';
-                    sectionTitle.appendChild(heading);
-                    container.appendChild(sectionTitle);
+                    // Extract description
+                    const capabilityDesc = doc.querySelector('.card > p');
+                    if (capabilityDesc) {
+                        const capabilityDescClone = document.createElement('p');
+                        capabilityDescClone.textContent = capabilityDesc.textContent;
+                        currentCapabilities.appendChild(capabilityDescClone);
+                    }
                     
-                    // Copy ALL the original styles from the roadmap.html head
-                    const originalStyles = doc.querySelectorAll('style');
-                    originalStyles.forEach(style => {
-                        const clonedStyle = document.createElement('style');
-                        clonedStyle.textContent = style.textContent;
-                        document.head.appendChild(clonedStyle);
+                    // Extract feature list with proper styling
+                    const featureList = document.createElement('ul');
+                    featureList.className = 'feature-list';
+                    
+                    const originalFeatures = originalCapabilities.querySelectorAll('.feature-item');
+                    originalFeatures.forEach(feature => {
+                        const listItem = document.createElement('li');
+                        // Convert roadmap classes to index classes
+                        if (feature.classList.contains('complete')) {
+                            listItem.className = 'feature-item complete';
+                        } else if (feature.classList.contains('in-progress')) {
+                            listItem.className = 'feature-item in-progress';
+                        } else if (feature.classList.contains('planned')) {
+                            listItem.className = 'feature-item planned';
+                        }
+                        
+                        listItem.innerHTML = feature.innerHTML;
+                        featureList.appendChild(listItem);
                     });
                     
-                    // Extract the important content sections from the roadmap
-                    // Current Capabilities card
-                    const currentCapabilitiesCard = Array.from(originalContainer.querySelectorAll('.card'))
-                        .find(card => card.querySelector('h2')?.textContent === 'Current Capabilities' ||
-                                     card.previousElementSibling?.textContent === 'Current Capabilities');
-                    
-                    if (currentCapabilitiesCard) {
-                        container.appendChild(currentCapabilitiesCard.cloneNode(true));
-                    }
-                    
-                    // Key
-                    const key = originalContainer.querySelector('.key');
-                    if (key) {
-                        container.appendChild(key.cloneNode(true));
-                    }
-                    
-                    // Development Roadmap section
-                    const roadmapHeader = Array.from(originalContainer.querySelectorAll('h2'))
-                        .find(h2 => h2.textContent === 'Development Roadmap');
-                    if (roadmapHeader) {
-                        container.appendChild(roadmapHeader.cloneNode(true));
-                        
-                        // Get the roadmap container that follows
-                        const roadmapContainer = originalContainer.querySelector('.roadmap-container');
-                        if (roadmapContainer) {
-                            container.appendChild(roadmapContainer.cloneNode(true));
-                        }
-                    }
-                    
-                    // Add Button to view complete roadmap
-                    const btnContainer = document.createElement('div');
-                    btnContainer.style.textAlign = 'center';
-                    btnContainer.style.marginTop = '3rem';
-                    
-                    const viewMoreBtn = document.createElement('a');
-                    viewMoreBtn.href = 'roadmap.html';
-                    viewMoreBtn.className = 'btn';
-                    viewMoreBtn.textContent = 'View Full Roadmap';
-                    viewMoreBtn.target = '_blank';
-                    btnContainer.appendChild(viewMoreBtn);
-                    
-                    container.appendChild(btnContainer);
-                    
-                    // Update the slide with our new content
-                    roadmapSection.innerHTML = '';
-                    
-                    // Add standard slide elements back
-                    const scanLine = document.createElement('div');
-                    scanLine.className = 'scan-line';
-                    roadmapSection.appendChild(scanLine);
-                    
-                    const particleContainer = document.createElement('div');
-                    particleContainer.className = 'particle-container';
-                    roadmapSection.appendChild(particleContainer);
-                    
-                    // Add our container with the roadmap content
-                    roadmapSection.appendChild(container);
-                    console.log('Roadmap content successfully loaded and inserted');
-                    
-                    // Reinitialize particles in the new container
-                    addParticlesToContainer(particleContainer);
-                } else {
-                    throw new Error('Container not found in roadmap.html');
+                    currentCapabilities.appendChild(featureList);
+                    container.appendChild(currentCapabilities);
                 }
+                
+                // Import the Key
+                const keyDiv = document.createElement('div');
+                keyDiv.className = 'key';
+                
+                const originalKey = doc.querySelector('.key');
+                if (originalKey) {
+                    const keyItems = originalKey.querySelectorAll('.key-item');
+                    keyItems.forEach(item => {
+                        const keyItemClone = document.createElement('div');
+                        keyItemClone.className = 'key-item';
+                        
+                        const keyDot = document.createElement('div');
+                        keyDot.className = 'key-dot';
+                        
+                        // Find original dot class
+                        const originalDot = item.querySelector('.key-dot');
+                        if (originalDot) {
+                            if (originalDot.classList.contains('dot-complete')) {
+                                keyDot.className += ' dot-complete';
+                            } else if (originalDot.classList.contains('dot-progress')) {
+                                keyDot.className += ' dot-progress';
+                            } else if (originalDot.classList.contains('dot-planned')) {
+                                keyDot.className += ' dot-planned';
+                            }
+                        }
+                        
+                        keyItemClone.appendChild(keyDot);
+                        
+                        const keyText = document.createElement('span');
+                        keyText.textContent = item.querySelector('span').textContent;
+                        keyItemClone.appendChild(keyText);
+                        
+                        keyDiv.appendChild(keyItemClone);
+                    });
+                    
+                    container.appendChild(keyDiv);
+                }
+                
+                // Extract Roadmap Timeline
+                const timelineHeader = document.createElement('h3');
+                timelineHeader.textContent = 'Development Roadmap';
+                timelineHeader.style.marginTop = '3rem';
+                container.appendChild(timelineHeader);
+                
+                // Create a styled version of the timeline that matches the main site
+                const timelineContainer = document.createElement('div');
+                timelineContainer.className = 'roadmap-container';
+                
+                const originalTimeline = doc.querySelector('.roadmap-container');
+                if (originalTimeline) {
+                    // Create simplified timeline that matches main site styling
+                    const timelineItems = originalTimeline.querySelectorAll('.timeline-item');
+                    
+                    timelineItems.forEach((item, index) => {
+                        const timelineCard = document.createElement('div');
+                        timelineCard.className = 'card';
+                        
+                        // Extract quarter marker
+                        const quarterMarker = item.querySelector('.year-marker');
+                        if (quarterMarker) {
+                            const cardHeader = document.createElement('div');
+                            cardHeader.className = 'business-header';
+                            
+                            const cardTitle = document.createElement('h3');
+                            cardTitle.textContent = item.querySelector('.timeline-content h3').textContent;
+                            
+                            const quarterBadge = document.createElement('span');
+                            quarterBadge.className = 'badge';
+                            quarterBadge.textContent = quarterMarker.textContent;
+                            quarterBadge.style.float = 'right';
+                            
+                            cardHeader.appendChild(quarterBadge);
+                            cardHeader.appendChild(cardTitle);
+                            timelineCard.appendChild(cardHeader);
+                        }
+                        
+                        // Extract features
+                        const featureList = document.createElement('ul');
+                        const features = item.querySelectorAll('.feature-item');
+                        
+                        features.forEach(feature => {
+                            const listItem = document.createElement('li');
+                            
+                            // Map status classes
+                            if (feature.classList.contains('complete')) {
+                                listItem.className = 'complete';
+                            } else if (feature.classList.contains('in-progress')) {
+                                listItem.className = 'in-progress';
+                            } else if (feature.classList.contains('planned')) {
+                                listItem.className = 'planned';
+                            }
+                            
+                            listItem.textContent = feature.textContent.trim();
+                            featureList.appendChild(listItem);
+                        });
+                        
+                        timelineCard.appendChild(featureList);
+                        timelineContainer.appendChild(timelineCard);
+                    });
+                    
+                    container.appendChild(timelineContainer);
+                }
+                
+                // Add Button to view complete roadmap
+                const btnContainer = document.createElement('div');
+                btnContainer.style.textAlign = 'center';
+                btnContainer.style.marginTop = '3rem';
+                
+                const viewMoreBtn = document.createElement('a');
+                viewMoreBtn.href = 'roadmap.html';
+                viewMoreBtn.className = 'btn';
+                viewMoreBtn.textContent = 'View Full Roadmap';
+                viewMoreBtn.target = '_blank';
+                btnContainer.appendChild(viewMoreBtn);
+                
+                container.appendChild(btnContainer);
+                
+                // Update the slide with our new content
+                roadmapSection.innerHTML = '';
+                
+                // Add standard slide elements back
+                const scanLine = document.createElement('div');
+                scanLine.className = 'scan-line';
+                roadmapSection.appendChild(scanLine);
+                
+                const particleContainer = document.createElement('div');
+                particleContainer.className = 'particle-container';
+                roadmapSection.appendChild(particleContainer);
+                
+                // Add our container with the roadmap content
+                roadmapSection.appendChild(container);
+                console.log('Roadmap content successfully loaded and inserted');
+                
+                // Add roadmap-specific CSS to match the main site's style
+                const roadmapStyles = document.createElement('style');
+                roadmapStyles.textContent = `
+                    /* Roadmap styling adapted for the main site */
+                    .feature-item {
+                        padding: 0.5rem 0 0.5rem 2rem;
+                        position: relative;
+                        margin-bottom: 0.8rem;
+                    }
+                    
+                    .feature-item::before {
+                        content: '';
+                        position: absolute;
+                        width: 12px;
+                        height: 12px;
+                        border-radius: 50%;
+                        left: 0;
+                        top: 0.85rem;
+                    }
+                    
+                    .complete::before {
+                        background-color: var(--success);
+                        box-shadow: 0 0 8px var(--success);
+                    }
+                    
+                    .in-progress::before {
+                        background-color: var(--warning);
+                        box-shadow: 0 0 8px var(--warning);
+                    }
+                    
+                    .planned::before {
+                        background-color: var(--future);
+                        box-shadow: 0 0 8px var(--future);
+                    }
+                    
+                    .key {
+                        display: flex;
+                        justify-content: center;
+                        margin: 2rem 0;
+                        gap: 2rem;
+                        flex-wrap: wrap;
+                    }
+                    
+                    .key-item {
+                        display: flex;
+                        align-items: center;
+                        margin-right: 1.5rem;
+                    }
+                    
+                    .key-dot {
+                        width: 12px;
+                        height: 12px;
+                        border-radius: 50%;
+                        margin-right: 8px;
+                    }
+                    
+                    .dot-complete {
+                        background-color: var(--success);
+                        box-shadow: 0 0 8px var(--success);
+                    }
+                    
+                    .dot-progress {
+                        background-color: var(--warning);
+                        box-shadow: 0 0 8px var(--warning);
+                    }
+                    
+                    .dot-planned {
+                        background-color: var(--future);
+                        box-shadow: 0 0 8px var(--future);
+                    }
+                    
+                    .business-header {
+                        border-bottom: 1px solid var(--secondary);
+                        padding-bottom: 1rem;
+                        margin-bottom: 1.5rem;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        flex-wrap: wrap;
+                    }
+                    
+                    .business-header h3 {
+                        margin: 0;
+                    }
+                `;
+                
+                document.head.appendChild(roadmapStyles);
+                
+                // Reinitialize particles in the new container
+                addParticlesToContainer(particleContainer);
             })
             .catch(error => {
                 console.error('Error loading roadmap content:', error);
@@ -272,6 +461,7 @@ function addParticlesToContainer(container) {
         container.appendChild(particle);
     }
 }
+
 /**
  * Adds interactive elements to the presentation
  */
