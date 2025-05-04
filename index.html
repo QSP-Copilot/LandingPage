@@ -721,6 +721,302 @@ footer div {
 .business-header h3 {
     margin: 0;
 }
+        /* Main form container - maintains consistency with your existing styles */
+.signup-form {
+    max-width: 700px;
+    margin: 2rem auto;
+    background: var(--glass-bg, rgba(255, 255, 255, 0.8));
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--glass-border, rgba(0, 0, 0, 0.1));
+    text-align: center; /* Center align the first step */
+    color: var(--text);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Form note for the first step */
+.form-note {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-light, #6c757d);
+    text-align: center;
+}
+
+/* Initial email form styling */
+.form-control {
+    display: flex;
+    margin-bottom: 1rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-control input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px 0 0 4px;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.form-control .btn {
+    background-color: var(--primary, #3a01df);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+}
+
+.form-control .btn:hover {
+    background-color: var(--primary-dark, #2b00a3);
+}
+
+/* Success message styling */
+.success-message {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(0, 229, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+}
+
+.success-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #00cc88, #00e5ff);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+/* Detailed form styling */
+#detailed-form {
+    text-align: left;
+}
+
+/* Form groups to organize form elements */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Form rows for horizontal layout */
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Half-width elements */
+.half {
+    flex: 1;
+}
+
+/* Label styling */
+.signup-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Input styling */
+.signup-form input[type="text"],
+.signup-form input[type="email"],
+.signup-form select,
+.signup-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+.signup-form input[type="text"]:focus,
+.signup-form input[type="email"]:focus,
+.signup-form select:focus,
+.signup-form textarea:focus {
+    border-color: var(--primary, #3a01df);
+    box-shadow: 0 0 0 3px rgba(58, 1, 223, 0.15);
+    outline: none;
+}
+
+.signup-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Multi-select styling */
+.multi-select {
+    height: auto;
+    min-height: 120px;
+}
+
+/* Radio and checkbox groups */
+.radio-group,
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.radio-label,
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    cursor: pointer;
+}
+
+.radio-label input,
+.checkbox-label input {
+    margin-right: 0.5rem;
+}
+
+/* Small helper text */
+.signup-form small {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--text-light, #6c757d);
+    font-size: 0.8rem;
+}
+
+/* Form actions */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Primary button */
+.primary-btn {
+    background: var(--primary, #3a01df);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    flex: 1;
+}
+
+.primary-btn:hover {
+    background: var(--primary-dark, #2b00a3);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Secondary button */
+.secondary-btn {
+    background: transparent;
+    color: var(--primary, #3a01df);
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--primary, #3a01df);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+}
+
+.secondary-btn:hover {
+    background: rgba(58, 1, 223, 0.05);
+    transform: translateY(-3px);
+}
+
+/* Final thank you styling */
+#final-thank-you .success-message {
+    padding: 2rem;
+    margin-bottom: 0;
+}
+
+/* Style to match your cyber aesthetic */
+#detailed-form-container,
+#final-thank-you {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.signup-form select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%233a01df' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
+}
+
+/* Cyber light effect */
+.signup-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient, linear-gradient(135deg, #3a01df, #00e5ff));
+    border-radius: 10px 10px 0 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .radio-group,
+    .checkbox-group {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .primary-btn,
+    .secondary-btn {
+        width: 100%;
+    }
+}
+
 
 
 </style>
@@ -920,7 +1216,7 @@ footer div {
             
             <p style="margin: 0 auto 2rem; max-width: 600px;">Schedule a personalized demo to see your disease area modeled in real-time</p>
             
-            <div class="signup-form">
+<!--             <div class="signup-form">
                 <h3>Join Our Waitlist</h3>
                 <p>Be the first to experience QSP-Copilot when we launch</p>
                 <form id="email-form-footer" name="waitlist-footer" method="POST" netlify netlify-honeypot="bot-field">
@@ -934,7 +1230,211 @@ footer div {
                     </div>
                     <p id="form-message" style="display: none; margin-top: 10px; font-size: 0.9rem;"></p>
                 </form>
+            </div> -->
+
+            <!-- Two-Step Sign-up Form for QSP-Copilot -->
+<div class="signup-form">
+    <h3>Join Our Waitlist</h3>
+    <p>Be the first to experience QSP-Copilot when we launch</p>
+    
+    <!-- Step 1: Email Collection -->
+    <form id="email-form" name="waitlist-email" method="POST" netlify netlify-honeypot="bot-field" style="display: block;">
+        <input type="hidden" name="form-name" value="waitlist-email" />
+        <p class="hidden" style="display: none;">
+            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+        </p>
+        
+        <div class="form-control">
+            <input type="email" name="email" placeholder="Enter your email address" required id="email-input">
+            <button type="submit" class="btn">Join Waitlist</button>
+        </div>
+        <p class="form-note">You'll have the option to share more details after submitting</p>
+        <p id="email-form-message" style="display: none; margin-top: 10px; font-size: 0.9rem;"></p>
+    </form>
+    
+    <!-- Step 2: Detailed Information (Hidden initially) -->
+    <div id="detailed-form-container" style="display: none;">
+        <div class="success-message">
+            <div class="success-icon">✓</div>
+            <h4>Thanks for joining our waitlist!</h4>
+            <p>We'd love to learn more about your interests to help us tailor QSP-Copilot to your needs.</p>
+        </div>
+        
+        <form id="detailed-form" name="waitlist-detailed" method="POST" netlify netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="waitlist-detailed" />
+            <input type="hidden" name="email" id="hidden-email-field">
+            <p class="hidden" style="display: none;">
+                <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+            </p>
+            
+            <div class="form-row">
+                <div class="form-group half">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name-input" placeholder="Your name">
+                </div>
+                <div class="form-group half">
+                    <label for="organization">Organization</label>
+                    <input type="text" name="organization" id="org-input" placeholder="Company/Institution">
+                </div>
             </div>
+            
+            <!-- Professional Context -->
+            <div class="form-group">
+                <label for="usage-category">How will you use QSP-Copilot?</label>
+                <select name="usage-category" id="usage-category">
+                    <option value="" disabled selected>Select usage context</option>
+                    <option value="industry">Industry/Commercial</option>
+                    <option value="academic">Academic Research</option>
+                    <option value="government">Government/Regulatory</option>
+                    <option value="personal">Personal Research</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="organization-type">Organization Type</label>
+                <select name="organization-type" id="organization-type">
+                    <option value="" disabled selected>Select organization type</option>
+                    <option value="pharma">Pharmaceutical Company</option>
+                    <option value="biotech">Biotech</option>
+                    <option value="cro">Contract Research Organization</option>
+                    <option value="university">University/Academic</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <!-- Role Information -->
+            <div class="form-group">
+                <label for="job-role">Your Role</label>
+                <select name="job-role" id="job-role">
+                    <option value="" disabled selected>Select your role</option>
+                    <option value="researcher">Researcher/Scientist</option>
+                    <option value="modeler">QSP/PK-PD Modeler</option>
+                    <option value="comp-bio">Computational Biologist</option>
+                    <option value="pharmacologist">Pharmacologist</option>
+                    <option value="clinical">Clinical Research</option>
+                    <option value="project-manager">Project Manager</option>
+                    <option value="executive">Executive</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <!-- Technical Background -->
+            <div class="form-group">
+                <label>Modeling Experience</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="modeling-experience" value="beginner">
+                        <span>Beginner</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="modeling-experience" value="intermediate">
+                        <span>Intermediate</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="modeling-experience" value="advanced">
+                        <span>Advanced</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Current QSP Tools Used (select all that apply)</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="qsp-tools[]" value="python">
+                        <span>Python</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="qsp-tools[]" value="r">
+                        <span>R</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="qsp-tools[]" value="matlab">
+                        <span>MATLAB</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="qsp-tools[]" value="julia">
+                        <span>Julia</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="qsp-tools[]" value="simbiology">
+                        <span>SimBiology</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="qsp-tools[]" value="none">
+                        <span>None</span>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Disease Areas & Applications -->
+            <div class="form-group">
+                <label for="therapeutic-areas">Therapeutic Areas of Interest (select all that apply)</label>
+                <select name="therapeutic-areas[]" id="therapeutic-areas" multiple class="multi-select">
+                    <option value="oncology">Oncology</option>
+                    <option value="immunology">Immunology</option>
+                    <option value="neuroscience">Neuroscience</option>
+                    <option value="cardiovascular">Cardiovascular</option>
+                    <option value="metabolic">Metabolic</option>
+                    <option value="infectious">Infectious Disease</option>
+                    <option value="rare">Rare Disease</option>
+                    <option value="other">Other</option>
+                </select>
+                <small>Hold Ctrl/Cmd to select multiple options</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="model-application">Model Application (select all that apply)</label>
+                <select name="model-application[]" id="model-application" multiple class="multi-select">
+                    <option value="target-discovery">Target Discovery</option>
+                    <option value="drug-discovery">Drug Discovery</option>
+                    <option value="early-development">Early Development</option>
+                    <option value="late-stage">Late-Stage Clinical</option>
+                    <option value="post-marketing">Post-Marketing</option>
+                </select>
+                <small>Hold Ctrl/Cmd to select multiple options</small>
+            </div>
+            
+            <!-- Specific Use Cases -->
+            <div class="form-group">
+                <label for="primary-interest">Primary Interest in QSP-Copilot</label>
+                <select name="primary-interest" id="primary-interest">
+                    <option value="" disabled selected>Select primary interest</option>
+                    <option value="literature">Literature Extraction</option>
+                    <option value="knowledge">Knowledge Integration</option>
+                    <option value="model-building">Model Building</option>
+                    <option value="simulation">Simulation</option>
+                    <option value="visualization">Visualization</option>
+                    <option value="parameter">Parameter Estimation</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="key-challenges">Key Challenges You Hope QSP-Copilot Will Solve</label>
+                <textarea name="key-challenges" id="key-challenges" rows="3" placeholder="What problems are you hoping our platform will solve?"></textarea>
+            </div>
+            
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="submit" class="btn primary-btn">Submit Additional Information</button>
+                <button type="button" class="btn secondary-btn" id="skip-button">Skip for Now</button>
+            </div>
+            
+            <p id="detailed-form-message" style="display: none; margin-top: 10px; font-size: 0.9rem;"></p>
+        </form>
+    </div>
+    
+    <!-- Final Thank You Message (Hidden initially) -->
+    <div id="final-thank-you" style="display: none;">
+        <div class="success-message">
+            <div class="success-icon">✓</div>
+            <h4>Thank you for your input!</h4>
+            <p>Your feedback will help us create a better QSP-Copilot experience.</p>
+            <p>We'll be in touch with updates as we approach launch.</p>
+        </div>
+    </div>
+</div>
         </div>
     </section>
 
@@ -956,5 +1456,99 @@ footer div {
     </script>
     <!-- Add Integration Script -->
     <script src="integration.js"></script>
+        <!-- JavaScript to handle form transitions -->
+<script>
+    // When the email form is submitted
+    document.getElementById('email-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get the email
+        const email = document.getElementById('email-input').value;
+        
+        // Submit the email form using fetch API to Netlify
+        fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                'form-name': 'waitlist-email',
+                'email': email
+            }).toString()
+        })
+        .then(response => {
+            if (response.ok) {
+                // Hide the email form
+                document.getElementById('email-form').style.display = 'none';
+                
+                // Set the hidden email field in the detailed form
+                document.getElementById('hidden-email-field').value = email;
+                
+                // Show the detailed form
+                document.getElementById('detailed-form-container').style.display = 'block';
+                
+                // Scroll to the top of the detailed form
+                document.getElementById('detailed-form-container').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            const messageEl = document.getElementById('email-form-message');
+            messageEl.style.display = 'block';
+            messageEl.style.color = '#dc3545';
+            messageEl.textContent = 'There was an error submitting your email. Please try again.';
+        });
+    });
+    
+    // When the detailed form is submitted
+    document.getElementById('detailed-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(this);
+        const formEntries = Array.from(formData.entries());
+        
+        // Submit the detailed form to Netlify
+        fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formEntries).toString()
+        })
+        .then(response => {
+            if (response.ok) {
+                // Hide the detailed form
+                document.getElementById('detailed-form-container').style.display = 'none';
+                
+                // Show the final thank you message
+                document.getElementById('final-thank-you').style.display = 'block';
+                
+                // Scroll to the top of the thank you message
+                document.getElementById('final-thank-you').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            const messageEl = document.getElementById('detailed-form-message');
+            messageEl.style.display = 'block';
+            messageEl.style.color = '#dc3545';
+            messageEl.textContent = 'There was an error submitting your information. Please try again.';
+        });
+    });
+    
+    // When the skip button is clicked
+    document.getElementById('skip-button').addEventListener('click', function() {
+        // Hide the detailed form
+        document.getElementById('detailed-form-container').style.display = 'none';
+        
+        // Show the final thank you message
+        document.getElementById('final-thank-you').style.display = 'block';
+        
+        // Scroll to the top of the thank you message
+        document.getElementById('final-thank-you').scrollIntoView({ behavior: 'smooth' });
+    });
+</script>
+
 </body>
 </html>
