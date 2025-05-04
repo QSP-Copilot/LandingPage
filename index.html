@@ -1017,6 +1017,72 @@ footer div {
     }
 }
 
+        /* Add this to your CSS to support the column layout for checkboxes */
+.column-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.75rem;
+}
+
+/* Style for checkbox and radio inputs */
+.checkbox-label input[type="checkbox"],
+.radio-label input[type="radio"] {
+    margin-right: 0.5rem;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid var(--primary, #3a01df);
+    border-radius: 3px;
+    outline: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.radio-label input[type="radio"] {
+    border-radius: 50%;
+}
+
+.checkbox-label input[type="checkbox"]:checked,
+.radio-label input[type="radio"]:checked {
+    background-color: var(--primary, #3a01df);
+    border-color: var(--primary, #3a01df);
+}
+
+.checkbox-label input[type="checkbox"]:checked::before,
+.radio-label input[type="radio"]:checked::before {
+    content: '';
+    position: absolute;
+    display: block;
+}
+
+.checkbox-label input[type="checkbox"]:checked::before {
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.radio-label input[type="radio"]:checked::before {
+    left: 4px;
+    top: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+/* Responsive adjustment for mobile */
+@media (max-width: 768px) {
+    .column-layout {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+}
 
 
 </style>
@@ -1236,17 +1302,21 @@ footer div {
 <div class="signup-form">
     <h3>Join Our Waitlist</h3>
     <p>Be the first to experience QSP-Copilot when we launch</p>
-                <form id="email-form" name="waitlist" method="POST" netlify netlify-honeypot="bot-field">
-                    <input type="hidden" name="form-name" value="waitlist" />
-                    <p class="hidden" style="display: none;">
-                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-                    </p>
-                    <div class="form-control">
-                        <input type="email" name="email" placeholder="Enter your email address" required id="email-input">
-                        <button type="submit" class="btn">Join Waitlist</button>
-                    </div>
-                    <p id="form-message" style="display: none; margin-top: 10px; font-size: 0.9rem;"></p>
-                </form>
+    
+    <!-- Step 1: Email Collection -->
+    <form id="email-form" name="waitlist" method="POST" netlify netlify-honeypot="bot-field" style="display: block;">
+        <input type="hidden" name="form-name" value="waitlist" />
+        <p class="hidden" style="display: none;">
+            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+        </p>
+        
+        <div class="form-control">
+            <input type="email" name="email" placeholder="Enter your email address" required id="email-input">
+            <button type="submit" class="btn">Join Waitlist</button>
+        </div>
+        <p class="form-note">You'll have the option to share more details after submitting</p>
+        <p id="form-message" style="display: none; margin-top: 10px; font-size: 0.9rem;"></p>
+    </form>
     
     <!-- Step 2: Detailed Information (Hidden initially) -->
     <div id="detailed-form-container" style="display: none;">
@@ -1256,13 +1326,13 @@ footer div {
             <p>We'd love to learn more about your interests to help us tailor QSP-Copilot to your needs.</p>
         </div>
         
-        <form id="detailed-form" name="waitlist-detailed" method="POST" netlify netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="waitlist-detailed" />
+        <form id="detailed-form" name="waitlist-details" method="POST" netlify netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="waitlist-details" />
             <input type="hidden" name="email" id="hidden-email-field">
             <p class="hidden" style="display: none;">
                 <label>Don't fill this out if you're human: <input name="bot-field" /></label>
             </p>
-                        
+            
             <!-- Professional Context -->
             <div class="form-group">
                 <label for="usage-category">How will you use QSP-Copilot?</label>
@@ -1498,66 +1568,101 @@ footer div {
     </script> -->
     <!-- Add Integration Script -->
     <script src="integration.js"></script>
-        <!-- JavaScript to handle form transitions -->
+        // Add this script at the end of your HTML file, just before the closing </body> tag
 <script>
-    // When the email form is submitted
-    document.getElementById('email-form').addEventListener('submit', function(e) {
-        e.preventDefault();
+    // Define a function to set up form handlers
+    function setupFormHandlers() {
+        console.log("Setting up form handlers...");
         
-        // Get the email
-        const email = document.getElementById('email-input').value;
-        
-        // Submit the email form using fetch API to Netlify
-        fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({
-                'form-name': 'waitlist-email',
-                'email': email
-            }).toString()
-        })
-        .then(response => {
-            if (response.ok) {
-                // Hide the email form
-                document.getElementById('email-form').style.display = 'none';
-                
-                // Set the hidden email field in the detailed form
-                document.getElementById('hidden-email-field').value = email;
-                
-                // Show the detailed form
-                document.getElementById('detailed-form-container').style.display = 'block';
-                
-                // Scroll to the top of the detailed form
-                document.getElementById('detailed-form-container').scrollIntoView({ behavior: 'smooth' });
-            } else {
-                throw new Error('Network response was not ok');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            const messageEl = document.getElementById('email-form-message');
-            messageEl.style.display = 'block';
-            messageEl.style.color = '#dc3545';
-            messageEl.textContent = 'There was an error submitting your email. Please try again.';
+        // When the email form is submitted
+        document.getElementById('email-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log("Email form submitted");
+            
+            // Get the email
+            const email = document.getElementById('email-input').value;
+            console.log("Email entered:", email);
+            
+            // Submit the email form using fetch API to Netlify
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({
+                    'form-name': 'waitlist',
+                    'email': email
+                }).toString()
+            })
+            .then(response => {
+                console.log("Form submission response:", response.status);
+                if (response.ok) {
+                    // Hide the email form
+                    document.getElementById('email-form').style.display = 'none';
+                    
+                    // Set the hidden email field in the detailed form
+                    document.getElementById('hidden-email-field').value = email;
+                    
+                    // Show the detailed form
+                    document.getElementById('detailed-form-container').style.display = 'block';
+                    
+                    // Scroll to the top of the detailed form
+                    document.getElementById('detailed-form-container').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const messageEl = document.getElementById('form-message');
+                messageEl.style.display = 'block';
+                messageEl.style.color = '#dc3545';
+                messageEl.textContent = 'There was an error submitting your email. Please try again.';
+            });
         });
-    });
-    
-    // When the detailed form is submitted
-    document.getElementById('detailed-form').addEventListener('submit', function(e) {
-        e.preventDefault();
         
-        // Get form data
-        const formData = new FormData(this);
-        const formEntries = Array.from(formData.entries());
+        // When the detailed form is submitted
+        document.getElementById('detailed-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log("Detailed form submitted");
+            
+            // Get form data
+            const formData = new FormData(this);
+            const formEntries = Array.from(formData.entries());
+            
+            // Submit the detailed form to Netlify
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formEntries).toString()
+            })
+            .then(response => {
+                console.log("Detailed form submission response:", response.status);
+                if (response.ok) {
+                    // Hide the detailed form
+                    document.getElementById('detailed-form-container').style.display = 'none';
+                    
+                    // Show the final thank you message
+                    document.getElementById('final-thank-you').style.display = 'block';
+                    
+                    // Scroll to the top of the thank you message
+                    document.getElementById('final-thank-you').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const messageEl = document.getElementById('detailed-form-message');
+                messageEl.style.display = 'block';
+                messageEl.style.color = '#dc3545';
+                messageEl.textContent = 'There was an error submitting your information. Please try again.';
+            });
+        });
         
-        // Submit the detailed form to Netlify
-        fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(formEntries).toString()
-        })
-        .then(response => {
-            if (response.ok) {
+        // When the skip button is clicked
+        const skipButton = document.getElementById('skip-button');
+        if (skipButton) {
+            skipButton.addEventListener('click', function() {
+                console.log("Skip button clicked");
                 // Hide the detailed form
                 document.getElementById('detailed-form-container').style.display = 'none';
                 
@@ -1566,30 +1671,21 @@ footer div {
                 
                 // Scroll to the top of the thank you message
                 document.getElementById('final-thank-you').scrollIntoView({ behavior: 'smooth' });
-            } else {
-                throw new Error('Network response was not ok');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            const messageEl = document.getElementById('detailed-form-message');
-            messageEl.style.display = 'block';
-            messageEl.style.color = '#dc3545';
-            messageEl.textContent = 'There was an error submitting your information. Please try again.';
-        });
+            });
+        }
+    }
+
+    // Call setup function when the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("DOM fully loaded");
+        setupFormHandlers();
     });
-    
-    // When the skip button is clicked
-    document.getElementById('skip-button').addEventListener('click', function() {
-        // Hide the detailed form
-        document.getElementById('detailed-form-container').style.display = 'none';
-        
-        // Show the final thank you message
-        document.getElementById('final-thank-you').style.display = 'block';
-        
-        // Scroll to the top of the thank you message
-        document.getElementById('final-thank-you').scrollIntoView({ behavior: 'smooth' });
-    });
+
+    // Also call it now in case the DOM is already loaded
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        console.log("Document already loaded, setting up handlers immediately");
+        setupFormHandlers();
+    }
 </script>
 
 </body>
